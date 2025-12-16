@@ -15,6 +15,15 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            overflow-x: clip; /* better than hidden when supported */
+        }
+
+        @supports not (overflow-x: clip) {
+            html, body { overflow-x: hidden; }
+        }
+
         body {
             font-family: 'Noto Serif','Futura', 'Avenir', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: #F7F6F2;
@@ -73,6 +82,7 @@
             padding: 0;
             height: 100vh;
             position: relative;
+            overflow-x: clip;
         }
 
         /* Hero Image - Bottom Layer */
@@ -252,19 +262,22 @@
             }
 
             /* Show Mobile Logo on Mobile */
-            .logo-wrapper-mobile {
+            .logo-wrapper-mobile{
                 display: block;
                 position: absolute;
-                left: -4px;
+                left: 0;
                 top: -10px;
-                width: 266%;
+                width: 100%;
+                max-width: 100vw;
                 z-index: 100;
                 pointer-events: none;
+                transform: scale(2.66);
+                transform-origin: top left;
             }
-
-            .logo-wrapper-mobile svg {
+            .logo-wrapper-mobile svg{
                 width: 100%;
                 height: auto;
+                display: block;
             }
 
             .content-inner {
